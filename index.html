@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoGoBike</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+
+    <style>
+    html, body {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    #map {
+        height: 300px;
+        margin-bottom: 50px;
+    }
+
+    nav {
+        margin: 0 auto;
+        width:100%;
+        line-height: 40px;
+        text-align: center;
+        background-color: rgb(255, 234, 165);
+    }
+    nav > span {
+        font-size: 1.5rem;
+        font-weight: 500;
+        color:rgb(0, 0, 0);
+    }
+
+    nav > div > a {
+        text-decoration: none;
+        padding:5px 10px;
+        border-radius: 15px;
+        background-color: sandybrown;
+    }
+
+    .main { 
+        margin: 0 auto;
+        width:50%;
+        text-align: center;
+    }
+
+    .stopInfo {
+        margin: 50px 0;
+    }
+
+    footer {
+        line-height:30px;
+        text-align: center;
+        background-color: sandybrown;
+    }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <span>GoGoBike</span>
+        <div>
+            <a href="#">找景點</a>
+            <a href="#">找美食</a>
+        </div>
+    </nav>
+
+    <div class="main">
+        <div>
+            <label><h4>搜尋站點</h4></label><br/>
+            <input placeholder="請輸入要尋找的區域"/>
+        </div>
+        <div class="stopInfo">
+            <h4>站點資訊</h4>
+            <p></p>
+        </div>
+        <div id="map"></div>
+    </div>
+    <footer>copyright@2021</footer>
+
+    <script>
+        // initialize Leaflet
+        var map = L.map('map').setView([25.0321237, 121.5613086], 17);
+
+        // add the OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+        }).addTo(map);
+
+        // show the scale bar on the lower left corner
+        L.control.scale({imperial: true, metric: true}).addTo(map);
+
+        // show a marker on the map
+        L.marker({lon: 0, lat: 0}).bindPopup('The center of the world').addTo(map);
+    </script>
+
+</body>
+</html>
